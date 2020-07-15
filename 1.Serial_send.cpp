@@ -1,4 +1,5 @@
-    #include <conio.h>   // for getch
+        
+        #include <conio.h>   // for getch
 	#include <Windows.h>
 	#include <stdio.h>
 	
@@ -16,7 +17,7 @@
 			printf("\n\n +==========================================+");
 			printf("\n |    Serial Port  Reception (Win32 API)    |");
 			printf("\n +==========================================+\n");
-			/*---------------------------------- Opening the Serial Port -------------------------------------------*/
+
 			
 			hComm = CreateFile( ComPortName,                  // Name of the Port to be Opened
 		                        GENERIC_READ | GENERIC_WRITE, // Read/Write Access
@@ -31,7 +32,7 @@
 			else
 				printf("\n    Port %s Opened\n ", ComPortName);
 
-			/*------------------------------- Setting the Parameters for the SerialPort ------------------------------*/
+
 			
 			DCB dcbSerialParams = { 0 };                         // Initializing DCB structure
 			dcbSerialParams.DCBlength = sizeof(dcbSerialParams);
@@ -61,7 +62,7 @@
 					printf("\n       Parity   = %d", dcbSerialParams.Parity);
 				}
 
-			/*------------------------------------ Setting Timeouts --------------------------------------------------*/
+
 			
 			COMMTIMEOUTS timeouts = { 0 };
 			timeouts.ReadIntervalTimeout         = 50;
@@ -75,7 +76,7 @@
 			else
 				printf("\n\n    Setting Serial Port Timeouts Successfull");
 
-			/*------------------------------------ Setting Receive Mask ----------------------------------------------*/
+
 			
 			Status = SetCommMask(hComm, EV_RXCHAR); //Configure Windows to Monitor the serial device for Character Reception
 	
@@ -85,13 +86,12 @@
 				printf("\n\n    Setting CommMask successfull");
 
 			
-           /*------------------------------------ Setting WaitComm() Event   ----------------------------------------*/
+
 			
 			printf("\n\n    Waiting for Data Reception");
 
 			Status = WaitCommEvent(hComm, &dwEventMask, NULL); //Wait for the character to be received
-	
-			/*-------------------------- Program will Wait here till a Character is received ------------------------*/				
+			
 
 			if (Status == FALSE)
 				{
@@ -103,7 +103,7 @@
 
 					while (f > 0){
 				
-					/*------------Printing the RXed String to Console----------------------*/
+
 
 				//	printf("\n\n    ");
 			//		int j =0;
